@@ -1,11 +1,1248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Site</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Heavenly Coded - Discover and download indie games.">
+<title>Heavenly Coded | Indie Game Platform</title>
+
+<style>
+:root {
+--bg: #070611;
+--surface: #111025;
+--surface-light: #19152f;
+--text: #f7f4ff;
+--muted: #c4bdd8;
+--purple: #a855f7;
+--blue: #38bdf8;
+--red: #fb365b;
+--border: #3b315b;
+}
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+background: var(--bg);
+color: var(--text);
+font-family: Arial, sans-serif;
+line-height: 1.6;
+}
+
+a {
+color: inherit;
+text-decoration: none;
+}
+
+button,
+input {
+font: inherit;
+}
+
+button,
+a {
+cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+outline: 3px solid var(--blue);
+outline-offset: 3px;
+}
+
+/* NAVIGATION */
+
+.navbar {
+position: sticky;
+top: 0;
+z-index: 100;
+background: rgba(10, 7, 23, 0.96);
+border-bottom: 1px solid var(--border);
+backdrop-filter: blur(15px);
+}
+
+.nav-container {
+max-width: 1200px;
+margin: auto;
+padding: 15px 25px;
+display: flex;
+align-items: center;
+gap: 25px;
+flex-wrap: wrap;
+}
+
+.logo {
+display: flex;
+align-items: center;
+gap: 12px;
+font-size: 19px;
+font-weight: bold;
+letter-spacing: -0.5px;
+margin-right: auto;
+}
+
+.logo img {
+width: 48px;
+height: 48px;
+object-fit: cover;
+border-radius: 12px;
+border: 1px solid var(--purple);
+}
+
+.logo small {
+display: block;
+font-size: 9px;
+color: var(--muted);
+letter-spacing: 2px;
+}
+
+.nav-links {
+display: flex;
+align-items: center;
+gap: 6px;
+flex-wrap: wrap;
+}
+
+.nav-button {
+background: transparent;
+color: var(--muted);
+border: 1px solid transparent;
+border-radius: 8px;
+padding: 10px 15px;
+font-weight: bold;
+font-size: 14px;
+}
+
+.nav-button:hover,
+.nav-button[aria-current="page"] {
+color: white;
+background: #ffffff10;
+border-color: var(--purple);
+}
+
+.dropdown {
+position: relative;
+}
+
+.dropdown-menu {
+position: absolute;
+top: calc(100% + 8px);
+right: 0;
+min-width: 180px;
+padding: 8px;
+background: #16112a;
+border: 1px solid var(--purple);
+border-radius: 10px;
+box-shadow: 0 15px 35px #0008;
+}
+
+.dropdown-menu[hidden] {
+display: none;
+}
+
+.dropdown-menu a {
+display: block;
+padding: 10px;
+border-radius: 6px;
+color: var(--muted);
+}
+
+.dropdown-menu a:hover {
+background: #ffffff12;
+color: white;
+}
+
+/* GENERAL */
+
+.page {
+display: none;
+}
+
+.page.active {
+display: block;
+}
+
+.container {
+max-width: 1200px;
+margin: auto;
+padding: 70px 25px;
+}
+
+.eyebrow {
+color: #c4b5fd;
+text-transform: uppercase;
+letter-spacing: 3px;
+font-size: 12px;
+font-weight: bold;
+}
+
+h1 {
+font-size: clamp(38px, 6vw, 72px);
+line-height: 1.05;
+letter-spacing: -3px;
+margin: 20px 0;
+}
+
+h1 span {
+background: linear-gradient(
+100deg,
+#f4d9ff,
+var(--purple),
+var(--blue)
+);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+}
+
+h2 {
+font-size: 30px;
+margin-bottom: 10px;
+}
+
+h3 {
+font-size: 19px;
+margin-bottom: 8px;
+}
+
+p {
+color: var(--muted);
+}
+
+.lead {
+max-width: 650px;
+font-size: 17px;
+line-height: 1.8;
+}
+
+.button {
+display: inline-flex;
+justify-content: center;
+align-items: center;
+gap: 8px;
+padding: 13px 20px;
+border-radius: 9px;
+font-weight: bold;
+border: 1px solid var(--purple);
+transition: 0.2s;
+}
+
+.button:hover {
+transform: translateY(-2px);
+}
+
+.primary {
+background: linear-gradient(110deg, #9638d9, #6243e8);
+color: white;
+}
+
+.secondary {
+background: #ffffff08;
+border-color: var(--border);
+color: white;
+}
+
+.button-row {
+display: flex;
+gap: 12px;
+flex-wrap: wrap;
+margin-top: 28px;
+}
+
+/* HOME */
+
+.hero {
+min-height: 650px;
+display: flex;
+align-items: center;
+background:
+radial-gradient(
+ellipse at 15% 10%,
+#52248b35,
+transparent 45%
+),
+radial-gradient(
+ellipse at 90% 20%,
+#0d7cbd25,
+transparent 45%
+);
+}
+
+.hero-content {
+max-width: 1200px;
+width: 100%;
+margin: auto;
+padding: 70px 25px;
+}
+
+.hero-art {
+position: relative;
+max-width: 900px;
+height: 230px;
+margin: 60px auto 0;
+border: 1px solid var(--border);
+border-radius: 18px;
+overflow: hidden;
+background: linear-gradient(135deg, #150d2c, #10172e, #28102d);
+}
+
+.hero-art::before {
+content: "";
+position: absolute;
+inset: 0;
+background-image:
+linear-gradient(#ffffff09 1px, transparent 1px),
+linear-gradient(90deg, #ffffff09 1px, transparent 1px);
+background-size: 35px 35px;
+transform: perspective(300px) rotateX(45deg) scale(1.5);
+transform-origin: center bottom;
+}
+
+.orb {
+position: absolute;
+width: 145px;
+height: 145px;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+border-radius: 50%;
+background: radial-gradient(
+circle at 35% 30%,
+white,
+#d5a3ff 18%,
+#7432ed 43%,
+#28115c 70%,
+transparent 71%
+);
+box-shadow: 0 0 60px #8b5cf688;
+}
+
+.ring {
+position: absolute;
+width: 330px;
+height: 120px;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%) rotate(-20deg);
+border: 1px solid #9b83ff99;
+border-radius: 50%;
+}
+
+.ring.two {
+width: 460px;
+height: 160px;
+transform: translate(-50%, -50%) rotate(25deg);
+border-color: #38bdf855;
+}
+
+.hero-label {
+position: absolute;
+bottom: 20px;
+left: 22px;
+font-size: 11px;
+letter-spacing: 2px;
+color: #a8a0c8;
+text-transform: uppercase;
+}
+
+.online {
+position: absolute;
+bottom: 20px;
+right: 22px;
+color: #6ee7b7;
+font-size: 11px;
+}
+
+.section {
+margin-top: 60px;
+}
+
+.section-header {
+margin-bottom: 25px;
+}
+
+.section-header p {
+margin-top: 5px;
+}
+
+/* GAME CARDS */
+
+.game-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+}
+
+.game-card {
+background: linear-gradient(145deg, #17122b, #100d20);
+border: 1px solid var(--border);
+border-radius: 13px;
+overflow: hidden;
+transition: 0.2s;
+}
+
+.game-card:hover {
+transform: translateY(-4px);
+border-color: var(--purple);
+}
+
+.game-cover {
+height: 180px;
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+overflow: hidden;
+}
+
+.game-cover::before {
+content: "";
+position: absolute;
+inset: 0;
+background-image: linear-gradient(
+45deg,
+#ffffff09 25%,
+transparent 25%,
+transparent 50%,
+#ffffff09 50%,
+#ffffff09 75%,
+transparent 75%
+);
+background-size: 25px 25px;
+}
+
+.game-cover img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+opacity: 0.65;
+}
+
+.game-title {
+position: absolute;
+font-size: 28px;
+font-weight: 900;
+letter-spacing: -1px;
+text-shadow: 0 2px 20px #000;
+text-align: center;
+padding: 10px;
+}
+
+.game-info {
+padding: 18px;
+}
+
+.genre-tag {
+display: inline-block;
+color: #d8b4fe;
+background: #7c3aed20;
+border: 1px solid #7044a0;
+border-radius: 5px;
+padding: 4px 8px;
+font-size: 11px;
+margin-bottom: 10px;
+}
+
+.game-info p {
+font-size: 13px;
+margin-bottom: 18px;
+}
+
+.card-buttons {
+display: flex;
+gap: 8px;
+}
+
+.card-buttons a,
+.card-buttons button {
+flex: 1;
+text-align: center;
+padding: 10px 5px;
+border-radius: 7px;
+border: 1px solid var(--border);
+background: #ffffff08;
+color: white;
+font-size: 12px;
+font-weight: bold;
+}
+
+.card-buttons a:hover,
+.card-buttons button:hover {
+background: #ffffff15;
+border-color: var(--purple);
+}
+
+/* SEARCH */
+
+.catalog-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 20px;
+flex-wrap: wrap;
+margin-bottom: 25px;
+}
+
+.search {
+width: 280px;
+max-width: 100%;
+padding: 12px;
+border-radius: 8px;
+border: 1px solid var(--border);
+background: #ffffff08;
+color: white;
+}
+
+.search::placeholder {
+color: #9c91b4;
+}
+
+.empty {
+grid-column: 1 / -1;
+text-align: center;
+padding: 50px;
+border: 1px dashed var(--border);
+border-radius: 12px;
+}
+
+/* FOOTER */
+
+footer {
+border-top: 1px solid var(--border);
+background: #0c0918;
+padding: 35px 25px;
+}
+
+.footer-container {
+max-width: 1200px;
+margin: auto;
+display: flex;
+justify-content: space-between;
+gap: 20px;
+flex-wrap: wrap;
+}
+
+footer p {
+font-size: 13px;
+}
+
+.notice {
+padding: 14px;
+margin-bottom: 25px;
+border: 1px solid var(--purple);
+border-radius: 9px;
+background: #21163a;
+color: #e9ddff;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+.nav-container {
+gap: 12px;
+}
+
+.nav-links {
+width: 100%;
+justify-content: center;
+}
+
+.nav-button {
+padding: 9px 10px;
+font-size: 12px;
+}
+
+.game-grid {
+grid-template-columns: repeat(2, 1fr);
+}
+
+.container,
+.hero-content {
+padding: 45px 18px;
+}
+
+h1 {
+letter-spacing: -1.5px;
+}
+}
+
+@media (max-width: 480px) {
+.game-grid {
+grid-template-columns: 1fr;
+}
+
+.logo {
+margin-right: 0;
+}
+
+.nav-container {
+justify-content: center;
+}
+
+.nav-links {
+display: grid;
+grid-template-columns: repeat(5, 1fr);
+gap: 3px;
+}
+
+.nav-button {
+padding: 9px 3px;
+font-size: 10px;
+}
+
+.hero-art {
+height: 180px;
+}
+
+.hero-label {
+font-size: 8px;
+}
+
+.online {
+font-size: 9px;
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+*,
+*::before,
+*::after {
+scroll-behavior: auto !important;
+transition: none !important;
+}
+}
+</style>
 </head>
+
 <body>
-    <h1>Hello World</h1> 
+
+<!-- NAVIGATION -->
+
+<header class="navbar">
+<div class="nav-container">
+
+<a href="#home" class="logo" aria-label="Heavenly Coded home">
+<!-- Replace this placeholder with your actual logo file -->
+<img
+src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=200&q=80"
+alt="Heavenly Coded logo"
+>
+<span>
+Heavenly Coded
+<small>INDIE GAME PLATFORM</small>
+</span>
+</a>
+
+<nav class="nav-links" aria-label="Main navigation">
+
+<button class="nav-button" data-page="home" aria-current="page">
+Home
+</button>
+
+<button class="nav-button" data-page="games">
+Games
+</button>
+
+<button class="nav-button" data-page="downloads">
+Downloads
+</button>
+
+<div class="dropdown">
+<button
+class="nav-button"
+id="genres-button"
+aria-haspopup="true"
+aria-expanded="false"
+>
+Genres ▾
+</button>
+
+<div
+class="dropdown-menu"
+id="genres-menu"
+role="menu"
+hidden
+>
+<a href="#games" data-genre="Shooter" role="menuitem">
+Shooter
+</a>
+<a href="#games" data-genre="Action" role="menuitem">
+Action
+</a>
+<a href="#games" data-genre="Puzzle" role="menuitem">
+Puzzle
+</a>
+<a href="#games" data-genre="Horror" role="menuitem">
+Horror
+</a>
+<a href="#games" data-genre="Fighting" role="menuitem">
+Fighting
+</a>
+</div>
+</div>
+
+<button class="nav-button" data-page="info">
+Info
+</button>
+
+</nav>
+</div>
+</header>
+
+<main>
+
+<!-- HOME PAGE -->
+
+<section class="page active" id="home">
+
+<div class="hero">
+<div class="hero-content">
+
+<div class="eyebrow">
+Welcome to the next level
+</div>
+
+<h1>
+Where indie games<br>
+<span>find their players.</span>
+</h1>
+
+<p class="lead">
+Thank you for visiting Heavenly Coded.
+We appreciate you taking the time to explore our
+platform. Discover creative indie games, explore
+new worlds, and support the developers who bring
+them to life.
+</p>
+
+<div class="button-row">
+<button class="button primary" data-page="games">
+Explore Games →
+</button>
+
+<button class="button secondary" data-page="info">
+Learn About Us
+</button>
+</div>
+
+<div class="hero-art" aria-label="Futuristic abstract artwork">
+<div class="ring"></div>
+<div class="ring two"></div>
+<div class="orb"></div>
+
+<div class="hero-label">
+Creative worlds · Infinite possibilities
+</div>
+
+<div class="online">
+● Platform online
+</div>
+</div>
+
+<div class="section">
+
+<div class="section-header">
+<h2>Built for indie creators</h2>
+<p>
+A place to discover, share, and play.
+</p>
+</div>
+
+<div class="game-grid">
+
+<article class="game-card">
+<div class="game-info">
+<span class="genre-tag">01 / DISCOVER</span>
+<h3>Find New Worlds</h3>
+<p>
+Explore unique games from independent
+creators and discover your next
+favorite experience.
+</p>
+</div>
+</article>
+
+<article class="game-card">
+<div class="game-info">
+<span class="genre-tag">02 / CREATE</span>
+<h3>Support Developers</h3>
+<p>
+Give indie developers a place to share
+their creativity and connect with
+players.
+</p>
+</div>
+</article>
+
+<article class="game-card">
+<div class="game-info">
+<span class="genre-tag">03 / PLAY</span>
+<h3>Play Your Way</h3>
+<p>
+Find games across different genres,
+from fast-paced action to atmospheric
+adventures.
+</p>
+</div>
+</article>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</section>
+
+<!-- GAMES PAGE -->
+
+<section class="page" id="games">
+
+<div class="container">
+
+<div class="eyebrow">Explore the collection</div>
+
+<h1>The game <span>catalog.</span></h1>
+
+<p class="lead">
+Browse indie game listings and discover your next
+adventure. These are placeholder games for now and
+can be replaced with your own GameMaker projects.
+</p>
+
+<div class="section">
+
+<div class="catalog-header">
+<div>
+<h2 id="catalog-title">Featured Games</h2>
+<p id="catalog-description">
+Sample indie game listings.
+</p>
+</div>
+
+<input
+class="search"
+id="game-search"
+type="search"
+placeholder="Search games..."
+aria-label="Search games"
+>
+</div>
+
+<div class="game-grid" id="game-grid"></div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- DOWNLOADS PAGE -->
+
+<section class="page" id="downloads">
+
+<div class="container">
+
+<div class="eyebrow">Your game library</div>
+
+<h1>Downloads.</h1>
+
+<p class="lead">
+Explore downloadable games. Actual game files and
+secure downloads will be connected when your platform
+is ready for publishing.
+</p>
+
+<div class="section">
+
+<h2>Available Downloads</h2>
+
+<p>
+Sample downloadable game listings.
+</p>
+
+<div class="game-grid" id="download-grid"></div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- INFO PAGE -->
+
+<section class="page" id="info">
+
+<div class="container">
+
+<div class="eyebrow">The people behind the platform</div>
+
+<h1>About <span>Heavenly Coded.</span></h1>
+
+<p class="lead">
+Thank you for taking the time to visit Heavenly Coded.
+We are building a place where indie games can be
+discovered, downloaded, and enjoyed by players
+everywhere.
+</p>
+
+<div class="section">
+
+<article class="game-card">
+<div class="game-info">
+
+<span class="genre-tag">OUR MISSION</span>
+
+<h2>A Home for Indie Games</h2>
+
+<p>
+Heavenly Coded is starting with its own
+games and plans to welcome more developers
+over time. Our goal is to create a platform
+where creators and players can connect.
+</p>
+
+<div class="button-row">
+
+<a
+class="button primary"
+href="mailto:hello@heavenlycoded.example"
+>
+Contact Us ↗
+</a>
+
+<button
+class="button secondary"
+data-page="games"
+>
+Browse Games
+</button>
+
+</div>
+
+</div>
+</article>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-container">
+
+<div>
+<strong>✦ Heavenly Coded</strong>
+<p>
+Indie games. Creative worlds. Endless possibilities.
+</p>
+</div>
+
+<p>
+© <span id="year"></span> Heavenly Coded · Prototype
+</p>
+
+</div>
+
+</footer>
+
+<!-- JAVASCRIPT -->
+
+<script>
+const games = [
+{
+title: "Neon Drift",
+genre: "Action",
+description:
+"Race through a luminous future in this fast-paced arcade experience.",
+image:
+"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&q=80"
+},
+{
+title: "Void Hunter",
+genre: "Shooter",
+description:
+"Face strange enemies in a mysterious world full of dangerous encounters.",
+image:
+"https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80"
+},
+{
+title: "Clockwork Mind",
+genre: "Puzzle",
+description:
+"Solve intricate challenges and uncover the secrets of a mechanical realm.",
+image:
+"https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&q=80"
+},
+{
+title: "Last Light",
+genre: "Horror",
+description:
+"Explore a haunting environment where every shadow hides a mystery.",
+image:
+"https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=800&q=80"
+},
+{
+title: "Rival Protocol",
+genre: "Fighting",
+description:
+"Enter the arena and test your skills against fierce opponents.",
+image:
+"https://images.unsplash.com/photo-1542751110-97427bbecf20?w=800&q=80"
+},
+{
+title: "Starbound",
+genre: "Action",
+description:
+"Venture into an expansive universe and discover what lies beyond.",
+image:
+"https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80"
+}
+];
+
+let selectedGenre = "";
+
+const pages = ["home", "games", "downloads", "info"];
+
+const gameGrid = document.getElementById("game-grid");
+const downloadGrid = document.getElementById("download-grid");
+const searchInput = document.getElementById("game-search");
+const genresButton = document.getElementById("genres-button");
+const genresMenu = document.getElementById("genres-menu");
+
+/*
+PAGE NAVIGATION
+*/
+
+function navigate(page) {
+if (!pages.includes(page)) {
+page = "home";
+}
+
+pages.forEach(name => {
+const section = document.getElementById(name);
+
+section.classList.toggle("active", name === page);
+});
+
+document.querySelectorAll("[data-page]").forEach(button => {
+if (button.closest(".nav-links")) {
+if (button.dataset.page === page) {
+button.setAttribute("aria-current", "page");
+} else {
+button.removeAttribute("aria-current");
+}
+}
+});
+
+closeGenres();
+
+window.scrollTo({
+top: 0,
+behavior: "smooth"
+});
+
+if (page === "games") {
+renderGames();
+}
+
+if (page === "downloads") {
+renderDownloads();
+}
+}
+
+document.querySelectorAll("[data-page]").forEach(button => {
+button.addEventListener("click", () => {
+navigate(button.dataset.page);
+});
+});
+
+/*
+GENRE DROPDOWN
+*/
+
+function closeGenres() {
+genresMenu.hidden = true;
+genresButton.setAttribute("aria-expanded", "false");
+}
+
+genresButton.addEventListener("click", () => {
+const isOpen = !genresMenu.hidden;
+
+genresMenu.hidden = isOpen;
+genresButton.setAttribute("aria-expanded", String(!isOpen));
+});
+
+document.querySelectorAll("[data-genre]").forEach(link => {
+link.addEventListener("click", event => {
+event.preventDefault();
+
+selectedGenre = link.dataset.genre;
+
+navigate("games");
+
+searchInput.value = "";
+});
+});
+
+document.addEventListener("click", event => {
+if (!event.target.closest(".dropdown")) {
+closeGenres();
+}
+});
+
+document.addEventListener("keydown", event => {
+if (event.key === "Escape") {
+closeGenres();
+}
+});
+
+/*
+GAME CARDS
+*/
+
+function createGameCard(game) {
+const card = document.createElement("article");
+
+card.className = "game-card";
+
+card.innerHTML = `
+<div
+class="game-cover"
+style="background: linear-gradient(135deg, #17102e, #182c60, #8b245f);"
+>
+<img src="${game.image}" alt="" loading="lazy">
+<div class="game-title"></div>
+</div>
+
+<div class="game-info">
+
+<span class="genre-tag"></span>
+
+<h3></h3>
+
+<p></p>
+
+<div class="card-buttons">
+
+<button type="button" class="download-button">
+Download
+</button>
+
+<a
+href="https://itch.io"
+target="_blank"
+rel="noopener noreferrer"
+>
+Purchase ↗
+</a>
+
+</div>
+
+</div>
+`;
+
+card.querySelector(".game-title").textContent = game.title;
+card.querySelector(".genre-tag").textContent = game.genre;
+card.querySelector("h3").textContent = game.title;
+card.querySelector("p").textContent = game.description;
+
+card.querySelector(".download-button").addEventListener(
+"click",
+() => {
+alert(
+"The download for " +
+game.title +
+" will be available when the game files are uploaded."
+);
+}
+);
+
+return card;
+}
+
+function renderGames() {
+const search = searchInput.value.toLowerCase().trim();
+
+const filteredGames = games.filter(game => {
+const matchesGenre =
+!selectedGenre || game.genre === selectedGenre;
+
+const matchesSearch =
+!search ||
+game.title.toLowerCase().includes(search) ||
+game.genre.toLowerCase().includes(search) ||
+game.description.toLowerCase().includes(search);
+
+return matchesGenre && matchesSearch;
+});
+
+gameGrid.replaceChildren();
+
+document.getElementById("catalog-title").textContent =
+selectedGenre
+? selectedGenre + " Games"
+: "Featured Games";
+
+document.getElementById("catalog-description").textContent =
+filteredGames.length +
+" sample listing" +
+(filteredGames.length === 1 ? "" : "s") +
+".";
+
+if (filteredGames.length === 0) {
+const empty = document.createElement("div");
+
+empty.className = "empty";
+
+empty.innerHTML = `
+<h3>No games found</h3>
+<p>Try another search or genre.</p>
+`;
+
+gameGrid.appendChild(empty);
+return;
+}
+
+filteredGames.forEach(game => {
+gameGrid.appendChild(createGameCard(game));
+});
+}
+
+function renderDownloads() {
+downloadGrid.replaceChildren();
+
+games.forEach(game => {
+downloadGrid.appendChild(createGameCard(game));
+});
+}
+
+searchInput.addEventListener("input", renderGames);
+
+/*
+INITIALIZE
+*/
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+renderGames();
+renderDownloads();
+</script>
+
 </body>
 </html>
