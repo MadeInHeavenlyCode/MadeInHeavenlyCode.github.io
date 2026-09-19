@@ -629,7 +629,7 @@ transition: none !important;
 <header class="navbar">
 <div class="nav-container">
 
-<a href="/home.html" class="logo" aria-label="Heavenly Coded home">
+<a href="#home" class="logo" aria-label="Heavenly Coded home">
 <!--------------------------------------------- Replace this placeholder with your actual logo file ----------------------------->
 <img src="https://github.com/MadeInHeavenlyCode/MadeInHeavenlyCode.github.io/blob/main/0.png?raw=true"
 alt="Heavenly Coded logo">
@@ -970,6 +970,7 @@ description:
 image:
 "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&q=80"
 },
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 {
 title: "Void Hunter",
 genre: "Shooter",
@@ -978,6 +979,7 @@ description:
 image:
 "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80"
 },
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 {
 title: "Clockwork Mind",
 genre: "Puzzle",
@@ -986,6 +988,7 @@ description:
 image:
 "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&q=80"
 },
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 {
 title: "Last Light",
 genre: "Horror",
@@ -994,6 +997,7 @@ description:
 image:
 "https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=800&q=80"
 },
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 {
 title: "Rival Protocol",
 genre: "Fighting",
@@ -1002,11 +1006,20 @@ description:
 image:
 "https://images.unsplash.com/photo-1542751110-97427bbecf20?w=800&q=80"
 },
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 {
 title: "Starbound",
 genre: "Action",
 description:
 "Venture into an expansive universe and discover what lies beyond.",
+image:
+"https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80"
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+title: "Generator Giant",
+genre: "Sci-Fi",
+description:
+"Find out what the entity hides from us and seek the truth",
 image:
 "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80"
 }
@@ -1110,7 +1123,7 @@ closeGenres();
 });
 
 /*
-GAME CARDS
+GAME CARDS//////////////////////////////////////////////////////////////////////////////////////////////
 */
 
 function createGameCard(game) {
@@ -1119,10 +1132,9 @@ const card = document.createElement("article");
 card.className = "game-card";
 
 card.innerHTML = `
-<div
-class="game-cover"
-style="background: linear-gradient(135deg, #17102e, #182c60, #8b245f);"
->
+<div class="game-cover"
+style="background: linear-gradient(135deg, #17102e, #182c60, #8b245f);">
+
 <img src="${game.image}" alt="" loading="lazy">
 <div class="game-title"></div>
 </div>
